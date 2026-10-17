@@ -120,6 +120,22 @@
             .loading-details p { font-size: 12px; }
         }
 
+
+        /* Invitación a la newsletter, debajo del botón ENTRAR */
+        .newsletter-invite {
+            margin-top: 24px; max-width: 440px; width: 100%; box-sizing: border-box;
+            text-align: center; line-height: 1.55; color: #f5efe3;
+        }
+        .newsletter-invite p { margin: 0 0 5px; font-size: 14px; font-weight: 600; }
+        .newsletter-invite a { color: #e58a3f; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+        .newsletter-invite a:hover, .newsletter-invite a:focus-visible { color: #ffb77b; }
+        .newsletter-invite small { display: block; margin-top: 4px; font-size: 12px; color: #b8c9b3; }
+        @media (max-width: 680px), (max-height: 700px) {
+            .newsletter-invite { margin-top: 18px; max-width: 320px; }
+            .newsletter-invite p { font-size: 12.5px; }
+            .newsletter-invite small { font-size: 11.5px; }
+        }
+
         /* ============== EFECTOS DE INTRO (solo CSS: no cargan el mapa) ============== */
         #intro-title {
             position: fixed; inset: 0; z-index: 50;
@@ -310,6 +326,11 @@
                 <span class="loading-status">Cargando datos territoriales…</span>
                 <div class="loading-bar-track"><div id="loading-bar-fill" class="loading-bar-fill"></div></div>
                 <button id="btn-entrar" class="btn-entrar" onclick="entrar()" disabled>ENTRAR <span class="btn-arrow">→</span></button>
+            </div>
+            <div class="newsletter-invite">
+                <p>¿Te gustaría crear proyectos como este?</p>
+                <p>Conocé GIS Moderno en <a href="https://joacogonzalezma.com" target="_blank" rel="noopener noreferrer">joacogonzalezma.com</a>.</p>
+                <small>Suscribirte es gratis.</small>
             </div>
         </div>
     </div>
