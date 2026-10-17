@@ -292,6 +292,20 @@
             .intro-title-main { font-size: 30px; }
         }
 
+        /* Invitación dentro del panel GIS: escritorio y hoja móvil desplegable */
+        .panel-newsletter {
+            margin-top: 18px; padding-top: 15px;
+            border-top: 1px solid rgba(229, 138, 63, 0.45);
+            font-size: 12px; line-height: 1.55; color: #f5efe3;
+        }
+        .panel-newsletter strong { display: block; font-size: 12.5px; margin-bottom: 5px; }
+        .panel-newsletter a { color: #e58a3f; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+        .panel-newsletter a:hover, .panel-newsletter a:focus-visible { color: #ffb77b; }
+        .panel-newsletter .panel-newsletter-free { display: block; color: #b8c9b3; margin-top: 3px; }
+        @media (max-width: 700px), (max-height: 520px) {
+            .panel-newsletter { margin-top: 14px; padding: 13px 2px 6px; }
+        }
+
         /* ============== CONTROL 3D: solo en pantallas tactiles (sin mouse no hay clic derecho) ============== */
         .ctrl-3d { display: none; }
         .ctrl-3d button { display: flex; align-items: center; justify-content: center; color: #333; font: 700 13px/1 'Segoe UI', system-ui, sans-serif; }
@@ -388,6 +402,12 @@
             <span class="section-title">🏢 Escala de Altura (Metros)</span>
             <div class="gradient-bar"></div>
             <div class="leyenda"><span>0 m</span><span>10 m</span><span>20 m</span><span>+35 m</span></div>
+        </div>
+        <div class="panel-newsletter solo-expandido">
+            <strong>¿Te gustaría crear proyectos como este?</strong>
+            Conocé GIS Moderno en
+            <a href="https://joacogonzalezma.com" target="_blank" rel="noopener noreferrer">joacogonzalezma.com</a>.
+            <span class="panel-newsletter-free">Suscribirte es gratis.</span>
         </div>
     </div>
 
