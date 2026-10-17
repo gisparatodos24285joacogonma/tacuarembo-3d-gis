@@ -306,6 +306,35 @@
             .panel-newsletter { margin-top: 14px; padding: 13px 2px 6px; }
         }
 
+        /* En escritorio la invitación sale del panel lateral para evitar cortes. */
+        @media (min-width: 701px) and (min-height: 521px) {
+            .panel-newsletter { display: none; }
+        }
+        .map-newsletter {
+            position: absolute; left: 400px; right: 65px; bottom: 10px;
+            z-index: 6; box-sizing: border-box;
+            display: flex; justify-content: center; align-items: center;
+            flex-wrap: wrap; gap: 5px 13px;
+            padding: 7px 12px; border-radius: 8px;
+            background: rgba(16, 31, 22, 0.91);
+            border: 1px solid rgba(229, 138, 63, 0.3);
+            color: #f5efe3; font-size: 11.5px; line-height: 1.25;
+            text-align: center; transition: opacity 0.7s ease;
+        }
+        .map-newsletter a { color: #e58a3f; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+        .map-newsletter a:hover, .map-newsletter a:focus-visible { color: #ffb77b; }
+        .map-newsletter small { color: #b8c9b3; font-size: 10.5px; }
+        body.intro .map-newsletter { opacity: 0; pointer-events: none; }
+        .panel-flecha-texto { display: none; }
+        @media (max-width: 700px), (max-height: 520px) {
+            .map-newsletter { display: none; }
+            .panel-flecha { width: auto; min-width: 88px; gap: 6px; font-weight: 600; }
+            .panel-flecha-texto { display: inline; font-size: 11px; white-space: nowrap; }
+            .panel-flecha-icono { display: inline-block; transition: transform 0.25s ease; }
+            .panel.abierto .panel-flecha { transform: none; }
+            .panel.abierto .panel-flecha-icono { transform: rotate(180deg); }
+        }
+
         /* ============== CONTROL 3D: solo en pantallas tactiles (sin mouse no hay clic derecho) ============== */
         .ctrl-3d { display: none; }
         .ctrl-3d button { display: flex; align-items: center; justify-content: center; color: #333; font: 700 13px/1 'Segoe UI', system-ui, sans-serif; }
@@ -357,7 +386,7 @@
     <div class="panel" id="panel">
         <div class="panel-cabecera" onclick="alternarPanel()">
             <h1>Tacuarembó 3D GIS</h1>
-            <button type="button" id="panel-flecha" class="panel-flecha" aria-label="Mostrar u ocultar opciones" aria-expanded="false">▲</button>
+            <button type="button" id="panel-flecha" class="panel-flecha" aria-label="Ver más opciones" aria-expanded="false"><span id="panel-flecha-texto" class="panel-flecha-texto">Ver más</span><span class="panel-flecha-icono" aria-hidden="true">▲</span></button>
         </div>
         <p class="solo-expandido"><strong>Conteo de árboles de la ciudad y cálculo de densidad por manzana.</strong></p>
 
@@ -413,6 +442,12 @@
 
     <div id="map"></div>
     <div id="reticle-box" class="reticle-box"></div>
+    <!-- Invitación compacta bajo el recuadro de diagnóstico (solo PC) -->
+    <aside class="map-newsletter" aria-label="Conocé GIS Moderno">
+        <span>¿Te gustaría crear proyectos como este?</span>
+        <a href="https://joacogonzalezma.com" target="_blank" rel="noopener noreferrer">Conocé GIS Moderno ↗</a>
+        <small>Suscribirte es gratis.</small>
+    </aside>
     <div id="vignette-overlay"></div>
     <div class="letterbox top"></div>
     <div class="letterbox bottom"></div>
@@ -905,7 +940,10 @@
         function alternarPanel(abrir) {
             const abierto = (abrir === undefined) ? !panelEl.classList.contains('abierto') : abrir;
             panelEl.classList.toggle('abierto', abierto);
-            document.getElementById('panel-flecha').setAttribute('aria-expanded', String(abierto));
+            const flecha = document.getElementById('panel-flecha');
+            flecha.setAttribute('aria-expanded', String(abierto));
+            flecha.setAttribute('aria-label', abierto ? 'Ver menos opciones' : 'Ver más opciones');
+            document.getElementById('panel-flecha-texto').textContent = abierto ? 'Ver menos' : 'Ver más';
             if (!abierto) panelEl.scrollTop = 0;
         }
         // Se mide la altura del panel cerrado para ubicar el recuadro de conteo justo encima
